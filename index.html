@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FREE THINGS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            line-height: 1.2;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            border-bottom: 4px solid #fff;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+        }
+        
+        nav {
+            margin-top: 20px;
+        }
+        
+        .nav-btn {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            font-family: inherit;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-right: 4px;
+            transition: none;
+        }
+        
+        .nav-btn:hover {
+            background: #000;
+            color: #fff;
+            outline: 2px solid #fff;
+        }
+        
+        .nav-btn.active {
+            background: #000;
+            color: #fff;
+            outline: 2px solid #fff;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .free-thing {
+            background: #fff;
+            color: #000;
+            padding: 30px;
+            margin: 40px 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border: 4px solid #000;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .refresh-btn {
+            background: #fff;
+            color: #000;
+            border: 4px solid #000;
+            padding: 16px 32px;
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: none;
+        }
+        
+        .refresh-btn:hover {
+            background: #000;
+            color: #fff;
+            border-color: #fff;
+        }
+        
+        .refresh-icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 3;
+        }
+        
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .about-content h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 40px 0 20px 0;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 10px;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+        }
+        
+        .about-content strong {
+            background: #fff;
+            color: #000;
+            padding: 2px 4px;
+            font-weight: 900;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-btn {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .refresh-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            .free-thing {
+                padding: 20px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FREE THINGS</h1>
+            <nav>
+                <button class="nav-btn active" onclick="showPage('home')">HOME</button>
+                <button class="nav-btn" onclick="showPage('about')">ABOUT</button>
+            </nav>
+        </header>
+
+        <div id="home" class="page active">
+            <div class="free-thing" id="freeThing">
+                Click the refresh button to discover something you can do for free or almost free.
+            </div>
+            <button class="refresh-btn" onclick="getRandomThing()">
+                <svg class="refresh-icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M23 4v6h-6M1 20v-6h6"/>
+                    <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                </svg>
+                REFRESH
+            </button>
+        </div>
+
+        <div id="about" class="page">
+            <div class="about-content">
+                <h2>WHAT IS THIS</h2>
+                <p>This website gives you random suggestions for things you can do that cost <strong>nothing</strong> or <strong>almost nothing</strong>.</p>
+                
+                <p>In a world where everything seems to cost money, there are still plenty of meaningful activities, experiences, and ways to spend your time that are completely free or cost less than the price of a coffee.</p>
+
+                <h2>WHY DOES THIS EXIST</h2>
+                <p>Because boredom is expensive. Entertainment is expensive. Hobbies are expensive. But they don't have to be.</p>
+                
+                <p>This is a reminder that fulfillment, learning, creativity, and joy are not locked behind paywalls. They are accessible to everyone, right now, wherever you are.</p>
+
+                <h2>HOW TO USE IT</h2>
+                <p>Click refresh. Do the thing. Repeat when needed.</p>
+                
+                <p>Some suggestions require good weather. Some require internet access. Some require other people. Some require nothing but yourself. Take what works for you right now.</p>
+
+                <h2>CONTRIBUTE</h2>
+                <p>If you know of other great free or almost-free activities, consider contributing to similar projects or sharing your ideas with others who might benefit.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const freeThings = [
+            "Take a walk in your neighborhood and notice details you have never seen before.",
+            "Read free books and articles at your local library or through Project Gutenberg online.",
+            "Watch the sunrise or sunset from somewhere with a good view.",
+            "Learn a new skill through free YouTube tutorials or Khan Academy courses.",
+            "Visit free museums on their designated community days.",
+            "Go stargazing on a clear night and identify constellations with a free astronomy app.",
+            "Attend free community events, concerts, or festivals in your area.",
+            "Explore hiking trails and nature parks near you.",
+            "Have a picnic in a local park with food you make at home.",
+            "Write in a journal about your thoughts and experiences.",
+            "Practice meditation or yoga with free apps like Insight Timer.",
+            "Learn a new language with Duolingo or similar free apps.",
+            "Volunteer for a cause you care about and meet people who share your values.",
+            "Visit farmers markets to sample free tastes and observe the local food culture.",
+            "Create art using materials you already have at home.",
+            "Listen to free podcasts on subjects that interest you.",
+            "Play games in the park like frisbee, catch, or jump rope.",
+            "Discover new music on free platforms like Spotify, YouTube, or Bandcamp.",
+            "Take photographs of interesting architecture, nature, or street scenes in your area.",
+            "Attend free workshops at libraries, community centers, or online.",
+            "Grow herbs or vegetables from seeds that cost under two dollars per packet.",
+            "Have meaningful conversations with friends or family members.",
+            "Take virtual tours of museums and historical sites from around the world.",
+            "Learn to cook new recipes using ingredients you already have.",
+            "Organize a clothing swap with friends to refresh your wardrobe for free.",
+            "Try geocaching, a real-world treasure hunting game using GPS coordinates.",
+            "Visit free botanical gardens or arboretums in your region.",
+            "Learn handicrafts like knitting, crocheting, or origami through online tutorials.",
+            "Attend free lectures or talks at universities or community colleges.",
+            "Learn basic coding skills with free platforms like Scratch, freeCodeCamp, or Codecademy.",
+            "Rearrange your living space to create a fresh environment without buying anything new.",
+            "Practice drawing or sketching people, objects, or scenes around you.",
+            "Research your family history using free genealogy websites and resources.",
+            "Learn about birds in your area and try to spot different species.",
+            "Write letters or emails to old friends or distant family members.",
+            "Create playlists for different moods or activities and share them with others.",
+            "Practice a musical instrument you already own or learn one online.",
+            "Plan imaginary trips to places you want to visit someday.",
+            "Organize your digital photos and create albums or slideshows.",
+            "Learn about local history by reading about your town or city online."
+        ];
+
+        function getRandomThing() {
+            const randomIndex = Math.floor(Math.random() * freeThings.length);
+            const freeThingElement = document.getElementById('freeThing');
+            freeThingElement.textContent = freeThings[randomIndex];
+        }
+        
+        function showPage(pageName) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Hide all nav buttons active state
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageName).classList.add('active');
+            
+            // Activate corresponding nav button
+            event.target.classList.add('active');
+        }
+        
+        // Show a random thing when the page loads
+        window.addEventListener('load', getRandomThing);
+    </script>
+</body>
+</html>
