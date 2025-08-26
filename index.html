@@ -15,17 +15,30 @@
     header nav a {color:#fff;text-decoration:none;margin-left:20px;font-size:0.9rem;transition:opacity .3s;}
     header nav a:hover {opacity:.6;}
 
-    main {padding:240px 20px 60px;max-width:1400px;margin:auto;text-align:left;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-start;}
+    main {padding:200px 5vw 60px;max-width:1200px;margin:auto;text-align:left;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-start;}
 
-    .sentence {font-size:clamp(6rem, 4vw, 2rem);font-weight:700;text-transform:uppercase;line-height:1;animation:fadeUp .8s ease forwards;opacity:0;display:inline;}
+    .sentence {font-size:clamp(2rem, 6vw, 6rem);font-weight:700;text-transform:uppercase;line-height:1.1;animation:fadeUp .8s ease forwards;opacity:0;display:inline;word-wrap:break-word;}
 
     @keyframes fadeUp {to{opacity:1;transform:translateY(0);}from{opacity:0;transform:translateY(40px);}}
 
-    .subtitle {font-family:'Inter', sans-serif; font-size:1.5rem;line-height:1;color:#000000;max-width:800px;margin-top:40px;margin-bottom:40px;animation:fadeUp .8s ease forwards;opacity:0;}
+    .subtitle {font-family:'Inter', sans-serif;font-size:clamp(1rem, 2.5vw, 1.5rem);line-height:1.4;color:#000000;max-width:900px;margin-top:30px;margin-bottom:40px;animation:fadeUp .8s ease forwards;opacity:0;}
 
-    .refresh-btn {width:60px;height:60px;margin-right:24px;margin-bottom:6px;border-radius:50%;border:none;outline:2px solid #000;cursor:pointer;background:#ffffff;color:#000000;display:inline-flex;align-items:center;justify-content:center;transition:all .3s;vertical-align:text-bottom;}
+    .refresh-btn {width:60px;height:60px;margin-right:24px;margin-bottom:6px;border-radius:50%;border:none;outline:2px solid #000;cursor:pointer;background:#ffffff;color:#000000;display:inline-flex;align-items:center;justify-content:center;transition:all .3s;vertical-align:text-bottom;flex-shrink:0;}
     .refresh-btn:hover {background:#000000;color:#ffffff;outline:2px solid #000;}
-    .refresh-btn svg {width:40px;height:40px;}
+    .refresh-btn svg {width:28px;height:28px;}
+
+    @media (max-width:768px) {
+      main {padding:160px 5vw 40px;}
+      .sentence {line-height:1.2;font-size:clamp(4rem, 2vw, 4rem);}
+    }
+
+    @media (max-width:480px) {
+      main {padding:100px 5vw 30px;font-size:clamp(2rem, 2vw, 4rem);}
+      header {padding:15px 20px;}
+      .logo {font-size:0.9rem;}
+      .refresh-btn {width:40px;height:40px;}
+      .refresh-btn svg {width:22px;height:22px;}
+    }
   </style>
 </head>
 <body>
@@ -39,8 +52,9 @@
   <main id="home">
     <div>
       <button class="refresh-btn" onclick="getRandomThing()">
-        <svg class="w-12 h-12 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/></svg>
+        <svg class="w-12 h-12 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
+        </svg>
       </button>
       <span id="sentenceContainer" class="sentence"></span>
     </div>
@@ -49,41 +63,77 @@
 
   <main id="about" style="display:none;">
     <h2 class="sentence">About</h2>
-    <p class="subtitle">This website gives you random suggestions for things you can do that cost <strong>nothing</strong> or <strong>almost nothing</strong>.</p>
+    <p class="subtitle">This website gives you random suggestions for things you can do that cost <strong>nothing</strong> or <strong>almost nothing</strong>. It adapts to any screen size so everything stays readable without overlap.</p>
   </main>
 
-  <script>
-    const freeThings = [
-      { text: "Take a walk in your neighborhood and notice details you have never seen before.", sub: "Look for hidden corners, interesting textures, or colors that usually escape your attention." },
-      { text: "Read free books and articles at your local library or through Project Gutenberg online.", sub: "Thousands of classics and new discoveries are waiting for you without costing a cent." },
-      { text: "Watch the sunrise or sunset from somewhere with a good view.", sub: "Notice how the light changes everything around you in a matter of minutes." },
-      { text: "Learn a new skill through free YouTube tutorials or Khan Academy courses.", sub: "You can practice languages, coding, drawing, music, and more with no barrier except curiosity." },
-      { text: "Go stargazing on a clear night and identify constellations.", sub: "A sky map or app can help you put names to the patterns of stars above." }
-    ];
+<script>
+const freeThings = [
+  { 
+    text: "Water.", 
+    sub: "<p>Water is the source of life.</p><p>That is, I believe, the reason why I like it so much.</p>" 
+  },
+  { 
+    text: "Reading free books and articles.", 
+    sub: "<p>Thousands of classics and valid content can be found without costs.</p><p>You should instead absolutely avoid typing &quot;removepaywall.com&quot; before a website with paywall, and going to <em>ZLib</em> to find paid books for free.</p>" 
+  },
+  { 
+    text: "Watch the sunrise or sunset from somewhere with a good view.", 
+    sub: "<p>Notice how the light changes everything around you in a matter of minutes.</p>" 
+  },
+  { 
+    text: "Learn a new skill through free YouTube tutorials or Khan Academy courses.", 
+    sub: "<p>You can practice languages, coding, drawing, music, and more with no barrier except curiosity.</p>" 
+  },
+  { 
+    text: "Go stargazing on a clear night and identify constellations.", 
+    sub: "<p>A sky map or app can help you put names to the patterns of stars above.</p>" 
+  },
+{ 
+    text: "Write a journal entry.", 
+    sub: "<p>Try writing down <strong>everything</strong> you felt today.</p><p>Don’t censor yourself—it’s <em>only for you</em>.</p>" 
+  },
+  { 
+    text: "Appreciate silence.", 
+    sub: "Turn off notifications for a while &mdash; no noise, no pressure.<br>Just you and your thoughts &#10024;" 
+  },
+  { 
+    text: "Doodle something random.", 
+    sub: "<ul><li>Grab a pen</li><li>Start drawing</li><li>No rules &rarr; only fun</li></ul>" 
+  },
+  { 
+    text: "Learn a new symbol.", 
+    sub: "Did you know you can type &hearts; ♥, &check; ✓, or &starf; ★ anywhere? Use them to decorate your notes!" 
+  },
+  { 
+    text: "Practice gratitude.", 
+    sub: "<p>List 3 things you’re thankful for:</p><ol><li>Your <strong>health</strong></li><li>Your <em>friends</em></li><li>Your curiosity ★</li></ol>" 
+  }
+];
 
-    function getRandomThing(){
-      const randomIndex=Math.floor(Math.random()*freeThings.length);
-      const {text,sub}=freeThings[randomIndex];
-      const sentenceContainer=document.getElementById('sentenceContainer');
-      const subtitleContainer=document.getElementById('subtitleContainer');
+function getRandomThing(){
+  const randomIndex=Math.floor(Math.random()*freeThings.length);
+  const {text,sub}=freeThings[randomIndex];
+  const sentenceContainer=document.getElementById('sentenceContainer');
+  const subtitleContainer=document.getElementById('subtitleContainer');
 
-      sentenceContainer.textContent=text;
-      subtitleContainer.textContent=sub;
+  sentenceContainer.textContent=text;
+  subtitleContainer.innerHTML=sub; // ✅ allows <p>, <br>, <em>, etc.
 
-      sentenceContainer.style.opacity=0;
-      subtitleContainer.style.opacity=0;
-      setTimeout(()=>{
-        sentenceContainer.style.opacity=1;
-        subtitleContainer.style.opacity=1;
-      },50);
-    }
+  sentenceContainer.style.opacity=0;
+  subtitleContainer.style.opacity=0;
+  setTimeout(()=>{
+    sentenceContainer.style.opacity=1;
+    subtitleContainer.style.opacity=1;
+  },50);
+}
 
-    function showPage(page){
-      document.getElementById('home').style.display= page==='home'?'block':'none';
-      document.getElementById('about').style.display= page==='about'?'block':'none';
-    }
+function showPage(page){
+  document.getElementById('home').style.display= page==='home'?'block':'none';
+  document.getElementById('about').style.display= page==='about'?'block':'none';
+  document.getElementById('aboutLink').style.display= page==='about'?'none':'inline';
+}
 
-    window.addEventListener('load', getRandomThing);
-  </script>
+window.addEventListener('load', getRandomThing);
+</script>
 </body>
 </html>
