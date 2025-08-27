@@ -43,12 +43,30 @@
       .refresh-btn svg {width:22px;height:22px;}
     }
     #sentenceContainer a,
-#subtitleContainer a {
+    #subtitleContainer a {
+    color: black;
+    text-decoration: underline;
+    text-decoration-thickness: 5%;
+    }
+
+.disclaimer {
+  background: orange;
   color: black;
-  text-decoration: underline;
-  text-decoration-thickness: 5%;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  padding: 30px 30px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  border-radius: 8px;   /* optional: make it look like a pill */
+  max-width: 700px;     /* optional: keep it from being too wide */
 }
 
+.disclaimer-logo {
+  height: 40px;
+  filter: invert(1);
+}
   </style>
 </head>
 <body>
@@ -62,6 +80,10 @@
 </header>
 
   <main id="home">
+      <div class="disclaimer">
+  <img src="assets/WIP.svg" alt="WIP" class="disclaimer-logo">
+  <span>This website is still under development. You might want to come back later.</span>
+</div>
     <div>
       <button class="refresh-btn" onclick="getRandomThing()">
         <svg class="w-12 h-12 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
